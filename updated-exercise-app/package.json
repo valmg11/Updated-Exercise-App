@@ -1,7 +1,7 @@
 {
   "name": "updated-exercise-app",
   "version": "0.1.0",
-  "homepage": "https://valmg11.github.io/updated-exercise-app",
+  "homepage": "https://valmg11.github.io/Updated-Exercise-App",
   "private": true,
   "dependencies": {
     "@testing-library/dom": "^10.4.1",
