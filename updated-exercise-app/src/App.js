@@ -10,14 +10,19 @@ function App() {
   let names = ["Push Ups", "Running"];
   let title = "Exercise!";
 
-  const [selectedButton, setSelectedButton] = useState(null);
-
-  const handleClick = (buttonName) => {
-    setSelectedButton(buttonName);
-  }
-
   
-  // console.log({buttonName});
+  const [selectedButton, setSelectedButton] = useState(null);
+  const [visible, setVisible] = useState(true);
+  // const handleClick = () => {
+  //   // setSelectedButton(buttonName);
+  // }
+  
+  
+  console.log(visible);
+
+  if (visible !== true) {
+    title = "";
+  }
   
 // console.log(selectedButton)
   // if (selectedButton.) {
@@ -33,8 +38,16 @@ function App() {
         <p>{title}</p>
         <div>{selectedButton}</div>
         <div className="buttons">
-          <button onClick={() => handleClick(<RepetitionExercise name={names}/>)}>{names[0]}</button>
-          <button onClick={() => handleClick(<DurationExercise name={names}/>)}>{names[1]}</button>
+          {/* <button onClick={() => handleClick(<RepetitionExercise name={names}/>)}>{names[0]}</button>
+          <button onClick={() => handleClick(<DurationExercise name={names}/>)}>{names[1]}</button> */}
+          <button onClick={() => {
+            setSelectedButton(<RepetitionExercise name={names}/>);
+            setVisible(false);
+            }}>{names[0]}</button>
+          <button onClick={() => {
+            setSelectedButton(<DurationExercise name={names}/>);
+            setVisible(false);
+            }}>{names[1]}</button>
         </div>
       </header>
     </div>
