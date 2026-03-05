@@ -5,7 +5,7 @@ import {useState, useEffect} from 'react'
 // import DurationExercise from "../DurationExercise"
 
 
-function RepetitionExercise({onReturn}) {
+function SitUpExercise({onReturn}) {
     const [count, setCount] = useState(0);
     useEffect(()=> {
         // console.log("button clicked "+ count+ " times");
@@ -20,10 +20,9 @@ function RepetitionExercise({onReturn}) {
                 <button onClick={() => setCount(count + 1)}>Complete Rep</button>
                 <button onClick={() => setCount(0)}>Reset</button>
             </div>
-             {/* return button */}
+            {/* return button */}
             <div className="buttons">
                 <button onClick={onReturn}>Return</button>
-
             </div>
         </header>
     </div>
@@ -31,4 +30,4 @@ function RepetitionExercise({onReturn}) {
     );
 }
 
-export default RepetitionExercise
+export default SitUpExercise

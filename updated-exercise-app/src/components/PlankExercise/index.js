@@ -8,7 +8,7 @@ import {useState, useEffect, useRef} from 'react'
 import React from "react";
 
 
-function DurationExercise({onReturn}) {
+function PlankExercise({onReturn}) {
 
         const [isRunning, setIsRunning] = useState(false);
         const [elapsedTime, setElapsedTime] = useState(0);
@@ -84,4 +84,4 @@ function DurationExercise({onReturn}) {
     );
 }
 
-export default DurationExercise
+export default PlankExercise
