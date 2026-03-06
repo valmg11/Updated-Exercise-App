@@ -8,79 +8,66 @@ import {useState, useEffect, useRef} from 'react'
 import React from "react";
 
 
-function DurationExercise({onReturn}) {
+function DurationExercise({onReturn, exercise}) {
+    const [isRunning, setIsRunning] = useState(false);
+    const [elapsedTime, setElapsedTime] = useState(0);
+    const intervalIdRef = useRef(null);
+    const startTimeRef = useRef(0);
 
-        const [isRunning, setIsRunning] = useState(false);
-        const [elapsedTime, setElapsedTime] = useState(0);
-        const intervalIdRef = useRef(null);
-        const startTimeRef = useRef(0);
-    
-        useEffect (() => {
-            if(isRunning) {
-                intervalIdRef.current = setInterval(() => {
-                    setElapsedTime(Date.now() - startTimeRef.current)
-                }, 10);
-            }
-            return () => {
-                clearInterval(intervalIdRef.current);
-            }
-        }, [isRunning]);
-        
-        function start() {
-            setIsRunning(true);
-            startTimeRef.current = Date.now() - elapsedTime;
+    useEffect (() => {
+        if(isRunning) {
+            intervalIdRef.current = setInterval(() => {
+                setElapsedTime(Date.now() - startTimeRef.current)
+            }, 10);
         }
-        
-        // function stop() {
-            //     setIsRunning(false);
-            // }
+        return () => {
+            clearInterval(intervalIdRef.current);
+        }
+    }, [isRunning]);
+    
+    function start() {
+        setIsRunning(true);
+        startTimeRef.current = Date.now() - elapsedTime;
+    }
 
-        //stops running and sets value to 0
-        function reset() {
-            setElapsedTime(0);
-            setIsRunning(false);
-        }
-    
-        function formatTime() {
-            // let hours = Math.floor(elapsedTime / (1000 * 60 * 60));
-            let mins = Math.floor(elapsedTime / (1000 * 60) % 60);
-            let secs = Math.floor(elapsedTime / (1000) % 60);
-            let millisecs = Math.floor(elapsedTime % 1000 / 10);
-    
-            // return {hours},":",{mins},":",{secs},":",{millisecs};
-            // hours = String(hours).padStart(2, "0");
+    //stops running and sets value to 0
+    function reset() {
+        setElapsedTime(0);
+        setIsRunning(false);
+    }
 
-            // add "0" padding to beginning
-            mins = String(mins).padStart(2, "0");
-            secs = String(secs).padStart(2, "0");
-            millisecs = String(millisecs).padStart(2, "0");
-    
-            // display stopwatch
-            return `${mins}:${secs}:${millisecs}`
-        }
+    function formatTime() {
+        let mins = Math.floor(elapsedTime / (1000 * 60) % 60);
+        let secs = Math.floor(elapsedTime / (1000) % 60);
+        let millisecs = Math.floor(elapsedTime % 1000 / 10);
+
+        mins = String(mins).padStart(2, "0");
+        secs = String(secs).padStart(2, "0");
+        millisecs = String(millisecs).padStart(2, "0");
+
+        // display stopwatch
+        return `${mins}:${secs}:${millisecs}`
+    }
 
     return (
     <div className="App">
         <header className="App-header">
-            {/* <p>{props.name[1]}</p> */}
-            {/* <p>Duration Exercise</p> */}
-        {/* <p>{running ? (Date.now()-curTime)/1000 : time/1000}</p> */}
-        {/* <button onClick={click}>{running ? "Reset" : "Start"}</button> */}
+            <h4>{exercise}</h4>
+
         <div>{formatTime()}</div><br></br>
         <div className="buttons">
             <button onClick={start}>Start</button>
-            {/* <button onClick={stop}>Stop</button> */}
 
             {/* reset/stop button */}
             <button onClick={reset}>Reset</button>
         </div>
+
         {/* return button */}
         <div className="buttons">
             <button onClick={onReturn}>Return</button>
         </div>
         </header>
     </div>
-
     );
 }
 

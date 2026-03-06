@@ -1,23 +1,34 @@
 //Valentina Gandolfo
-//Repetition
+//Strength
 
 import {useState} from 'react'
 // import DurationExercise from "../DurationExercise"
 
 
-function RepetitionExercise({onReturn, exercise}) {
+function ChestPressExercise({onReturn, exercise}) {
     const [count, setCount] = useState(0);
+    const [weight, setWeight] = useState(0);
 
     return (
     <div className="App">
         <header className="App-header">
             <h4>{exercise}</h4>
 
-        <span>{count}</span>
+        <span>Rep: {count}</span>
         <br></br>
+        <span>Weight: {weight}</span>
+        <br></br>
+
+            {/* rep buttons */}
             <div className="buttons">
                 <button onClick={() => setCount(count + 1)}>Complete Rep</button>
-                <button onClick={() => setCount(0)}>Reset</button>
+                <button onClick={() => setCount(0)}>Reset Rep</button>
+            </div>
+
+            {/* weight buttons */}
+            <div className="buttons">
+                <button onClick={() => setWeight(weight + 5)}>Increase Weight</button>
+                <button onClick={() => setWeight(weight - 5)}>Decrease Weight</button>
             </div>
 
             {/* return button */}
@@ -29,4 +40,4 @@ function RepetitionExercise({onReturn, exercise}) {
     );
 }
 
-export default RepetitionExercise
+export default ChestPressExercise

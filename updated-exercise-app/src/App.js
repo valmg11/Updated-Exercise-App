@@ -1,17 +1,20 @@
 //Valentina Gandolfo
-// import logo from './logo.svg';
 import './App.css';
-import {useState} from 'react'
-import PlankExercise from "./components/PlankExercise"
-import DurationExercise from "./components/DurationExercise"
-import RepetitionExercise from "./components/RepetitionExercise"
-import SitUpExercise from "./components/SitUpExercise"
+import {useState} from 'react';
+
+import PlankExercise from "./components/PlankExercise";
+import DurationExercise from "./components/DurationExercise";
+
+import RepetitionExercise from "./components/RepetitionExercise";
+import SitUpExercise from "./components/SitUpExercise";
+
+import StrengthExercise from './components/StrengthExercise';
+import ChestPressExercise from './components/ChestPressExercise';
+
 
 
 function App() {
-  let names = ["Push Ups", "Running"];
-  let title = "Exercise!";
-
+  let title = ["Exercise!", "Plank", "Running", "Push Ups", "Sit Ups", "Leg Press", "Chest Press"];
   
   //menu
   const [selectedButton, setSelectedButton] = useState(null);
@@ -19,80 +22,49 @@ function App() {
   // sets button to null (aka menu)
   const toMenu = () => setSelectedButton(null);
 
-// console.log(selectedButton)
-  // if (selectedButton.) {
-  //   console.log()
-  // }
-  console.log(selectedButton);
-
   //duration exercises
   if (selectedButton === "plank") {
-    return <PlankExercise onReturn={toMenu} name={names}/>;
+    return <PlankExercise onReturn={toMenu} exercise={title[1]}/>;
   } else if (selectedButton === "running") {
-    return <DurationExercise onReturn={toMenu}/>;
+    return <DurationExercise onReturn={toMenu} exercise={title[2]}/>;
     
   //repetition exercises
   } else if (selectedButton === "pushups") {
-    return <RepetitionExercise onReturn={toMenu}/>;
+    return <RepetitionExercise onReturn={toMenu} exercise={title[3]}/>;
   } else if (selectedButton === "situps") {
-    return <SitUpExercise onReturn={toMenu}/>;
+    return <SitUpExercise onReturn={toMenu} exercise={title[4]}/>;
+
+  //strength exercises
+  } else if (selectedButton === "leg press") {
+    return <StrengthExercise onReturn={toMenu} exercise={title[5]}/>;
+  } else if (selectedButton === "chest press") {
+    return <ChestPressExercise onReturn={toMenu} exercise={title[6]}/>;
   }
 
-
   return (
-    // <button onClick={() => <RepetitionExercise></RepetitionExercise>}>Repetition</button>
-    // <RepetitionExercise name></RepetitionExercise>
-    
     <div className="App">
       <header className="App-header">
-        <p>{title}</p>
+        <h4>{title[0]}</h4>
+
+        {/* duration */}
         <div className="buttons">
           <button onClick={() => setSelectedButton("plank")}>Plank</button>
+          <button onClick={() => setSelectedButton("running")}>Running</button>
+        </div>
+
+        {/* repetition */}
+        <div className="buttons">
+          <button onClick={() => setSelectedButton("situps")}>Sit Ups</button>
           <button onClick={() => setSelectedButton("pushups")}>Push Ups</button>
         </div>
+
+        {/* strength */}
         <div className="buttons">
-          <button onClick={() => setSelectedButton("running")}>Running</button>
-          <button onClick={() => setSelectedButton("situps")}>Sit Ups</button>
+          <button onClick={() => setSelectedButton("leg press")}>Leg Press</button>
+          <button onClick={() => setSelectedButton("chest press")}>Chest Press</button>
         </div>
-        
-        {/* {selectedButton === "menu" && (
-          <div>
-            <button onClick={() => setSelectedButton("rep")}> rep</button>
-            <button onClick={() => setSelectedButton("dur")}> dur</button>
-
-          </div> */}
-
-        {/* )} */}
-
-        {/* {selectedButton === "rep" && <RepetitionExercise onReturn={goToMenu}  name={names}/>}
-        {selectedButton === "dur" && <DurationExercise onReturn={goToMenu}  name={names}/>} */}
-
-
-
-
-        {/* <div>{selectedButton}</div>
-        <div className="buttons"> */}
-          {/* <button onClick={() => handleClick(<RepetitionExercise name={names}/>)}>{names[0]}</button>
-          <button onClick={() => handleClick(<DurationExercise name={names}/>)}>{names[1]}</button> */}
-          {/* <button onClick={() => {
-            setSelectedButton(<RepetitionExercise name={names} onReturn={() => setSelectedButton(null)}/>);
-            // setVisible(false);
-            }}>{names[0]}</button> */}
-            
-          {/* <button onClick={() => {
-            setSelectedButton(<DurationExercise name={names} onReturn={() => setSelectedButton(null)}/>);
-            // setVisible(false);
-            }}>{names[1]}</button> */}
-{/* 
-        </div>
-        <br></br>
-        <div className="buttons">
-          <button>Plank</button>
-          <button>Sit Ups</button>
-        </div> */}
       </header>
     </div>
-
   );  
 }
 

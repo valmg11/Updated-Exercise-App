@@ -1,32 +1,31 @@
 //Valentina Gandolfo
 //Repetition
 
-import {useState, useEffect} from 'react'
+import {useState} from 'react'
 // import DurationExercise from "../DurationExercise"
 
 
-function SitUpExercise({onReturn}) {
+function SitUpExercise({onReturn, exercise}) {
     const [count, setCount] = useState(0);
-    useEffect(()=> {
-        // console.log("button clicked "+ count+ " times");
-    }, [count]);
+
     return (
     <div className="App">
         <header className="App-header">
-            {/* <p>{props.name[0]}</p> */}
-        {/* <p>Repetition Exercise</p> */}
-        <p>{count}</p>
+            <h4>{exercise}</h4>
+
+        <span>{count}</span>
+        <br></br>
             <div className="buttons">
                 <button onClick={() => setCount(count + 1)}>Complete Rep</button>
                 <button onClick={() => setCount(0)}>Reset</button>
             </div>
+
             {/* return button */}
             <div className="buttons">
                 <button onClick={onReturn}>Return</button>
             </div>
         </header>
     </div>
-
     );
 }
 
